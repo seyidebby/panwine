@@ -28,7 +28,7 @@ async function newAccount(req, res) {
 async function getAccount(req, res) {
   try {
     const getById = await signup.findById(req.params.id);
-    res.status(200).json({ message: "account gotten", product: getById });
+    res.status(200).json({ message: "account gotten", account: getById });
   } catch (error) {
     console.log(error);
   }
@@ -38,7 +38,7 @@ async function getAllAccount(req, res) {
     const allAccount = await signup.find({});
     res
       .status(200)
-      .json({ message: "all account gotten", product: allAccount });
+      .json({ message: "all account gotten", account: allAccount });
   } catch (error) {
     console.log(error);
   }
@@ -48,7 +48,7 @@ async function editAccount(req, res) {
     const edit = await signup.findByIdAndUpdate(req.params.id, req.body, {
       return: "after",
     });
-    res.status(200).json({ message: "account updated", product: edit });
+    res.status(200).json({ message: "account updated", account: edit });
   } catch (error) {
     console.log(error);
   }
