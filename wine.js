@@ -27,7 +27,11 @@ const {
   editAccount,
   deleteAccount,
 } = require("./controllers/signup.controller.js");
-const { login } = require("./controllers/login.controller.js");
+const {
+  login,
+  forgotPassword,
+  verifyOtp,
+} = require("./controllers/login.controller.js");
 
 server.use(express.json());
 dotenv.config();
@@ -46,6 +50,8 @@ server.patch("/signup/:id", validateEditAccount, editAccount);
 server.delete("/signup/:id", deleteAccount);
 
 server.post("/login", validatelogin, login);
+server.post("/api/forgot-password", forgotPassword);
+server.post("/api/verify-otp", verifyOtp);
 
 server.listen(port, () => {
   console.log("panwine server loaded");

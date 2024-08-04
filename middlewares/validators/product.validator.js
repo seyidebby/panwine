@@ -1,7 +1,7 @@
 const joi = require("joi");
 const productSchema = joi.object({
   name: joi.string().required(),
-  price: joi.string().required(),
+  price: joi.number().required(),
 });
 function validateProduct(req, res, next) {
   const { error, value } = productSchema.validate(req.body);
@@ -14,7 +14,7 @@ function validateProduct(req, res, next) {
 
 const productEditSchema = joi.object({
   name: joi.string(),
-  price: joi.string(),
+  price: joi.number(),
 });
 function validateEditProduct(req, res, next) {
   const { error, value } = productEditSchema.validate(req.body);
