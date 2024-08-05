@@ -31,17 +31,18 @@ const {
   login,
   forgotPassword,
   verifyOtp,
+  resetPassword,
 } = require("./controllers/login.controller.js");
 
 server.use(express.json());
 dotenv.config();
 port = process.env.PORT;
 
-server.post("/wine", validateProduct, newProduct);
-server.get("/wine", getAllProduct);
-server.get("/wine/:id", getProduct);
-server.patch("/wine/:id", validateEditProduct, editProduct);
-server.delete("/wine/:id", deleteProduct);
+server.post("/product", validateProduct, newProduct);
+server.get("/product", getAllProduct);
+server.get("/product/:id", getProduct);
+server.patch("/product/:id", validateEditProduct, editProduct);
+server.delete("/product/:id", deleteProduct);
 
 server.post("/signup", validateSignup, newAccount);
 server.get("/signup", getAllAccount);
@@ -52,6 +53,7 @@ server.delete("/signup/:id", deleteAccount);
 server.post("/login", validatelogin, login);
 server.post("/api/forgot-password", forgotPassword);
 server.post("/api/verify-otp", verifyOtp);
+server.post("/api/resetpassword", resetPassword);
 
 server.listen(port, () => {
   console.log("panwine server loaded");

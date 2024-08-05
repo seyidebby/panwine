@@ -56,7 +56,7 @@ async function forgotPassword(req, res) {
         from: "testwork oluwaseyiogunsola16@gmail.com",
         to: req.body.email,
         subject: "send email in node.js with nodemailer using gmail account",
-        text: "this is your token ${otp.otpCode}",
+        text: `this is your token ${otp.otpCode}`,
       };
       SENDMAIL(options, (info) => {
         console.log("email sent successfully");
@@ -74,7 +74,6 @@ async function forgotPassword(req, res) {
 }
 async function verifyOtp(req, res) {
   try {
-    const { email, password } = req.body;
     const alreadyHaveAnAccountOtp = await signup.findOne({
       otpCode: req.body.otpCode,
     });
@@ -103,7 +102,7 @@ async function resetPassword(req, res) {
     if (alreadyHaveAnAccountOtp.isOtpVerified) {
       alreadyHaveAnAccountOtp.resetPassword(req.body.password);
 
-      return res.status(400).json({ message: "password reset succesfully" });
+      return res.status(200).json({ message: "password reset succesfully" });
     }
 
     return res.status(400).json({ message: "otp expired or not verified" });
@@ -116,4 +115,5 @@ module.exports = {
   login,
   forgotPassword,
   verifyOtp,
+  resetPassword,
 };

@@ -11,7 +11,10 @@ async function newProduct(req, res) {
     await createProduct.save();
     res
       .status(201)
-      .json({ message: "product created successfully", new: createProduct });
+      .json({
+        message: "product created successfully",
+        product: createProduct,
+      });
   } catch (error) {
     console.log(error);
   }
@@ -29,7 +32,7 @@ async function getAllProduct(req, res) {
     const allProduct = await product.find({});
     res
       .status(200)
-      .json({ message: "all product gotten", product: allProduct });
+      .json({ message: "all product gotten", products: allProduct });
   } catch (error) {
     console.log(error);
   }
