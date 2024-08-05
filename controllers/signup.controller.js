@@ -12,6 +12,8 @@ async function newAccount(req, res) {
         .status(400)
         .json({ message: "you already have an account, login instead" });
     }
+    const salt = bcrypt.genSaltSync(10);
+    const passwordHash = bcrypt.hashSync(req.body.password, salt);
     req.body.password = passwordHash;
 
     const createAccount = await signup.create(req.body);
